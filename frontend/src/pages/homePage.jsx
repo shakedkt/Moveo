@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { NavLink } from 'react-router-dom';
 import draw from '../images/drawandguess.png';
+import { DrawingService } from '../services/drawing.service'
 
 import { getIsFirstUser } from '../actions/drawingActions'
 
@@ -27,10 +28,17 @@ class homePage extends Component {
     this.props.getIsFirstUser()
   }
 
+  resetServer = () => {
+    DrawingService.setReset()
+  }
+
+
 
   render() {
     return (
       <section className="home">
+      <button className="reset-button"  onClick={() => { this.resetServer() }}>reset server</button>
+
         <div className="home">
           <div className="game-header">
             <h2 className="game-title"> {this.state.title} </h2>

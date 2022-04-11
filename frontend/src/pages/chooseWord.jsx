@@ -61,11 +61,12 @@ class chooseWordPage extends Component {
     this.props.getWordToGuess(this.state.chosenWord);
   }
 
-  render() {
+  render() {    
+    const firstIsGuesser = this.props.drawing.isGuesser
+    const isFirst = this.props.drawing.isFirstUser
+    const shouldShowCanvas = ((isFirst && !firstIsGuesser) || (!isFirst && firstIsGuesser)) // XOR
 
-    var isFirst = this.props.drawing.isFirstUser
-    console.log('isFirst', isFirst);
-    if (this.state.words.length > 2 && this.props.drawing.isFirstUser) {
+    if (this.state.words.length > 2 && shouldShowCanvas) {
 
       return (
         <section className="home">
@@ -88,7 +89,7 @@ class chooseWordPage extends Component {
       );
     }
 
-    if(!this.props.drawing.isFirstUser) {
+    if(!shouldShowCanvas) {
       return(
         <section className="home">
           <h2 className="game-title-choose-screen">

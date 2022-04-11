@@ -83,8 +83,9 @@ class CanvasPage extends Component {
           }
         
           if(this.props.drawing.pointsFromServer !== prevProps.drawing.pointsFromServer) {
-
+            this.props.setGuesser(!this.state.isGuesser)
             this.setState({ isGuesser: !this.state.isGuesser })
+
             this.props.navigate('/choose-words')
 
           }

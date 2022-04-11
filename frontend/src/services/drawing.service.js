@@ -4,6 +4,7 @@ import axios from 'axios';
 
 const BASE_URL = 'http://localhost:4000/api/drawing';
 
+// const BASE_URL = 'http://moveo-app-shaked-backend2.herokuapp.com/api/drawing';
 
 async function getDrawing() {
 
@@ -106,6 +107,19 @@ async function setWord(word) {
 }
 
 
+async function setReset() {
+    const res = await axios.post(BASE_URL + '/reset', {
+        proxy: {
+            host: process.env.REACT_APP_BACKEND_URL
+        },
+        header: {
+            crossorigin: true
+        }
+    })
+    return res.data
+}
+ 
+
 
 
 
@@ -116,5 +130,6 @@ export const DrawingService = {
     raisePoints,
     getPoints,
     getWord,
-    setWord
+    setWord,
+    setReset
 }
